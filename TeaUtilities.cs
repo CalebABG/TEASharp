@@ -25,7 +25,7 @@ internal static class TeaUtilities
     }
 
     /// <summary>
-    /// Chunks the provided <paramref name="key"/> into 4
+    /// Chunks the provided 128-bit <paramref name="key"/> into 4
     /// unsigned 32-bit integers.
     /// </summary>
     /// <param name="key">the key to chunk</param>
@@ -54,10 +54,10 @@ internal static class TeaUtilities
     /// Pads the key string to ensure that
     /// the key length is always a multiple of 2.
     /// </summary>
-    /// <param name="keyStr"></param>
+    /// <param name="keyStr">the key string to pad</param>
     /// <returns>
     /// Padded key string if the length of the provided key string was not
-    /// a multiple of two, otherwise returns provided key string parameter.
+    /// a multiple of two, otherwise returns the provided key string.
     /// </returns>
     private static string GetPaddedHexKey
     (
@@ -134,10 +134,10 @@ internal static class TeaUtilities
     }
 
     /// <summary>
-    /// Splits the hex-string into two (higher and lower)
+    /// Splits the hex string into two (higher and lower)
     /// unsigned 32-bit integers.
     /// </summary>
-    /// <param name="hexStr">the hex-string to split</param>
+    /// <param name="hexStr">the hex string to split</param>
     /// <returns>Tuple containing 2 unsigned 32-bit integers (L = higher, R = lower)</returns>
     private static (uint, uint) GetLRFromString
     (
@@ -174,13 +174,15 @@ internal static class TeaUtilities
 
     /// <summary>
     /// Gets the plaintext and key inputs from available input providers.
-    /// Input providers are evaluated in the following sequence:
-    /// 1. File provider - (checks for `pk.txt` file in the current working directory)
-    /// 2. Command line arguments - (first argument is 'plaintext', second argument is 'key')
-    /// 2. Console readline - ('plaintext' is requested first, 'key' is requested second)
+    /// <remarks>
+    /// Input providers are evaluated in the following sequence: <br/>
+    /// 1. File provider - (checks for file in the current working directory) <br/>
+    /// 2. Command line arguments - (first argument is 'plaintext', second argument is 'key') <br/>
+    /// 3. Console readline - ('plaintext' is requested first, 'key' is requested second) <br/>
+    /// </remarks>
     /// </summary>
-    /// <param name="args"></param>
-    /// <param name="filePath"></param>
+    /// <param name="args">the command line arguments</param>
+    /// <param name="filePath">the path to the file which contains the plaintext and key</param>
     /// <returns>Tuple containing the plaintext and key)</returns>
     internal static (string plaintext, string key) GetPlaintextAndKey
     (

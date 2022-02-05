@@ -7,7 +7,7 @@ public static class Program
     /// <remarks>
     /// This implementation <b>STRICTLY</b> handles keys which are 128-bits, and
     /// plaintext inputs which are 64-bits. Inputs for either that
-    /// are under or over the respective lengths is not guaranteed to work.
+    /// are under or over the respective lengths, are not guaranteed to work.
     /// </remarks>
     /// </summary>
     public static void Main(string[] args)
